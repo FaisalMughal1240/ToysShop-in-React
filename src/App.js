@@ -14,29 +14,39 @@ import TwoProducts from './components1/TwoProducts'
 import Signup from './Registration/Signup';
 import Login from './Registration/Login';
 import Checkout from './sidebar/Checkout';
+// import ErrorBoundry from './ErrorBoundry';
+import { useState } from 'react';
 function App() {
+  const [cart, setCart] = useState([]);
+  const [login,setLogin]=useState(false)
+  const getData = (e) => {
+    setCart(prevCart => [...prevCart, e]);
+  };
+  const getLogin=(e)=>{
+    console.log('dataaaaaaaa',e)
+  }
+  console.log('loginmmmm',login)
   return (
     <div>
       <BrowserRouter>
       <Navbar/>
-      <Header/>
+      <Header cart={cart}/>
       <Routes>
-      <Route path="/" element={<Home/>}></Route>
+      <Route path="/" element={<Home cart={cart} getData={getData}/>}></Route>
       <Route path="toys" element={<Toys/>}></Route>
       <Route path="catalog" element={<Catalog/>}></Route>
       <Route path="character" element={<Character/>}></Route>
       <Route path="brand" element={<Brand/>}></Route>
       <Route path="language" element={<Language/>}></Route>
       <Route path="mainpage" element={<Mainpage/>}></Route>
-      <Route path="wishlist" element={<Wishlist/>}></Route>
+      <Route path="wishlist" element={<Wishlist />}></Route>
       <Route path="compare" element={<Compare/>}></Route>
-      <Route path="products" element={<TwoProducts/>}></Route>
+      <Route path="twoproducts" element={<TwoProducts/>}></Route>
       <Route path="signup" element={<Signup/>}></Route>
-      <Route path="signin" element={<Login/>}></Route>
-      <Route path="checkout" element={<Checkout/>}></Route>
+      <Route path="signin" element={<Login login={login} getLogin={getLogin}/>}></Route>
+      <Route path="checkout" element={<Checkout cart={cart}/>}></Route>
       </Routes>
       </BrowserRouter>
-
     </div>
   );
 }

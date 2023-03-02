@@ -136,13 +136,34 @@
   box-sizing: border-box;
 }
 .container .checkout1{
-  width: 60%;
+  width: 100%;
   background-color: white;
   padding: 10px 20px;
+  text-align: center;
   border-radius: 15px 0px 0px 15px;
-  box-sizing: border-box;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
+.finalcheckout{
+  width: 100%;
+  border-top: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+.imagefinal{
+  width: 30%;
+  /* background-color: red; */
+}
+.text1{
+  width: 30%;
+  /* background-color: rgb(133, 75, 75); */
+}
+.text2{
+  width: 30%;
+  /* background-color: rgb(52, 47, 47); */
+}
+
 .container .checkout2{
   width: 40%;
   padding: 10px 20px;

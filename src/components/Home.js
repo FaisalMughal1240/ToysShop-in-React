@@ -1,9 +1,9 @@
 import React from 'react'
 import Products from '../sidebar/Products'
-function Home() {
+function Home(props) {
   return (
     <div>
-      <Products/>
+      <Products cart={props.cart} getData={props.getData} />
     </div>
   )
 }

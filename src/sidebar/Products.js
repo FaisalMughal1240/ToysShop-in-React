@@ -1,86 +1,84 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { IoBagCheckOutline } from 'react-icons/io5'
-import axios from 'axios'
-import '../App.css'
-function Products() {
-  const [data, setData] = useState([])
-  const [search, setSearch] = useState('')
-  const navigate = useNavigate()
+import React, { useEffect, useState } from "react";
+import { IoBagCheckOutline } from "react-icons/io5";
+import axios from "axios";
+import "../App.css";
+function Products(props) {
+  const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/viewproducts')
+      .get("http://localhost:5000/api/viewproducts")
       .then((res) => {
-        setData(res.data.item)
+        setData(res.data.item);
       })
       .catch((error) => {
-        console.log(error, 'error')
-      })
-  }, [])
+        console.log(error, "error");
+      });
+  }, []);
   const handleSearch = (e) => {
-    setSearch(e.target.value)
-  }
+    setSearch(e.target.value);
+  };
   const handlesearchkey = () => {
     axios
-      .post('http://localhost:5000/api/search', {
+      .post("http://localhost:5000/api/search", {
         name: search,
       })
       .then((res) => {
-        console.log('Search', res.data)
-        setData(res.data.products)
+        console.log("Search", res.data);
+        setData(res.data.products);
       })
       .catch((error) => {
-        console.log('no product found')
-      })
-  }
+        console.log("no product found");
+      });
+  };
   const handleSelect = (e) => {
-    if (e.target.value === 'ALL') {
+    if (e.target.value === "ALL") {
       axios
-        .get('http://localhost:5000/api/viewproducts')
+        .get("http://localhost:5000/api/viewproducts")
         .then((res) => {
-          setData(res.data.item)
+          setData(res.data.item);
         })
         .catch((error) => {
-          console.log(error, 'error')
-        })
-    } else if (e.target.value === 'Way to Train') {
+          console.log(error, "error");
+        });
+    } else if (e.target.value === "Way to Train") {
       axios
-        .post('http://localhost:5000/api/search', {
-          name: 'Way to Train',
+        .post("http://localhost:5000/api/search", {
+          name: "Way to Train",
         })
         .then((res) => {
-          console.log(res.data)
-          setData(res.data.products)
+          console.log(res.data);
+          setData(res.data.products);
         })
         .catch((error) => {
-          console.log('no product found')
-        })
-    } else if (e.target.value === 'Blocks for kids') {
+          console.log("no product found");
+        });
+    } else if (e.target.value === "Blocks for kids") {
       axios
-        .post('http://localhost:5000/api/search', {
-          name: 'Blocks for kids',
+        .post("http://localhost:5000/api/search", {
+          name: "Blocks for kids",
         })
         .then((res) => {
-          console.log(res.data)
-          setData(res.data.products)
+          console.log(res.data);
+          setData(res.data.products);
         })
         .catch((error) => {
-          console.log('no product found')
-        })
-    } else if (e.target.value === 'Car for kids') {
+          console.log("no product found");
+        });
+    } else if (e.target.value === "Car for kids") {
       axios
-        .post('http://localhost:5000/api/search', {
-          name: 'Car for kids',
+        .post("http://localhost:5000/api/search", {
+          name: "Car for kids",
         })
         .then((res) => {
-          console.log(res.data)
-          setData(res.data.products)
+          console.log(res.data);
+          setData(res.data.products);
         })
         .catch((error) => {
-          console.log('no product found')
-        })
+          console.log("no product found");
+        });
     }
-  }
+  };
   return (
     <>
       <div className="main">
@@ -132,16 +130,16 @@ function Products() {
             </select>
           </div>
           <div className="card">
-            {data.map((e) => {
+            { data.map((e, index) => {
               return (
-                <div className="designcard">
+                <div className="designcard" key={index}>
                   <div className="imagebc">
                     <img
                       src={e.image}
                       alt=""
                       width="100%"
                       height="250px"
-                      style={{ objectFit: 'contain' }}
+                      style={{ objectFit: "contain" }}
                     />
                   </div>
                   <div className="content">
@@ -154,27 +152,33 @@ function Products() {
                       <strong>TOY NAME:</strong> {e.name}
                     </span>
                     <span>
-                      {' '}
+                      {" "}
                       <br />
                       <strong>PRICE: </strong>
                       <strong>$</strong>
                       {e.price}
                     </span>
                     <IoBagCheckOutline
-                      onClick={() => navigate('/checkout')}
-                      style={{ color: 'red', fontSize: '30px', float: 'right' }}
+                      onClick={() =>
+                        props.getData({
+                          name: e.name,
+                          price: e.price,
+                          image: e.image,
+                        })
+                      }
+                      style={{ color: "red", fontSize: "30px", float: "right" }}
                     >
                       SHOP NOW
                     </IoBagCheckOutline>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Products
+export default Products;

@@ -8,7 +8,9 @@ function Navbar() {
     <>
     <div className="navigation">
       <div className="logo">
-        <NavLink to='/'><span>LEGA LAND </span><span>RED BRICK</span>
+        <NavLink to='/'>
+        <h2 style={{color:"black"}}>LEGO LAND </h2>
+        <p style={{color:"red"}}>RED BRICK</p>
        </NavLink>
       </div>
       <nav className='links'>

@@ -1,7 +1,8 @@
 import React from 'react';
- import { Formik, Form, Field } from 'formik';
- import * as Yup from 'yup';
- import axios from 'axios';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import Messages from './Alerts';
+import axios from 'axios';
 import { NavLink } from 'react-router-dom';
  const SignupSchema = Yup.object().shape({
    name: Yup.string()
@@ -16,6 +17,7 @@ import { NavLink } from 'react-router-dom';
  });
  export const ValidationSchemaExample = () => (
    <div className='signup'>
+        <Messages/>
      <h1>Sign up</h1>
      <Formik
        initialValues={{
