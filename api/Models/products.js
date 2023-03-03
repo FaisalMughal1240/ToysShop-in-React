@@ -17,6 +17,11 @@ const Product = new Schema({
     type: String,
     require: false,
   },
+  date: {
+    type: Date,
+    default: Date.now,
+    timestamps: true
+  },
 });
 const Models = mongoose.model("Product", Product);
 

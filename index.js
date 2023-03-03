@@ -3,7 +3,7 @@ const app= express();
 const connectToMongo=require('./api/database')
 const bodyParser=require("body-parser");
 const authRoutes = require('./api/Routes/authRoutes');
-const port=5000;
+const port=4000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 connectToMongo();
