@@ -113,16 +113,15 @@ exports.searchProducts = async function (req, res) {
 };
 exports.searchPrice = async function (req, res) {
   try {
-      const products = await product.find(
-       {name:{$in:['Baby Cars','Way to Train']}}
-        ).sort({price:-1})
-      if(products){
+      const products = await product.find( { $and: [ { price: { $gt : 2000 } },{ name:'Train for childs'} ] } )
+      if(products.length>0){
         return res.status(201).json({
           message: "Reterived Products Successfully",
           products
       });
       }
-      else{
+      else
+      {
         return res.status(400).json({
           message: "No Products Found",
       });
